@@ -22,6 +22,20 @@ const NavBar = () => {
       <li>
         <NavLink to="/issues">Issues</NavLink>
       </li>
+      {/* All Issues, Add Issues, My Issues, My Contribution, */}
+      {
+        user && <>
+        <li>
+        <NavLink to="/addIssues">Add Issues</NavLink>
+      </li>
+      <li>
+        <NavLink to="/myIssues">My Issues</NavLink>
+      </li>
+      <li>
+        <NavLink to="/myContribution">My Contribution</NavLink>
+      </li>
+      </>
+      }
     </>
   );
 
@@ -60,7 +74,8 @@ const NavBar = () => {
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
+      {/* Button */}
+      <div className="navbar-end pr-3">
         {user ? (
           <button onClick={handleLogOut} className="btn">
             Logout
@@ -75,6 +90,31 @@ const NavBar = () => {
             </NavLink>
           </>
         )}
+      </div>
+      {/* PhotoURL */}
+      <div className="dropdown dropdown-end">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-ghost btn-circle avatar group relative"
+        >
+          <div className="w-10 rounded-full">
+            <img
+              alt="Tailwind CSS Navbar component"
+              src={
+                user
+                  ? user.photoURL
+                  : "https://img.icons8.com/?size=100&id=oO0pZgktLNpK&format=png&color=000000"
+              }
+            />
+          </div>
+          {/* User Name */}
+          {user && (
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {user.displayName}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
