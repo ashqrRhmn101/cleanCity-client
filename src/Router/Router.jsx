@@ -8,6 +8,7 @@ import Register from "../Pages/Login/Register";
 import AddIssues from "../Pages/Issues/AddIssues";
 import MyIssues from "../Pages/Issues/MyIssues";
 import MyContribution from "../Pages/Issues/MyContribution";
+import PrivateRouter from "../Provider/PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -24,15 +25,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/addIssues",
-        element: <AddIssues />,
+        element: (
+          <PrivateRouter>
+            <AddIssues />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/myIssues",
-        element: <MyIssues />,
+        element: (
+          <PrivateRouter>
+            <MyIssues />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/myContribution",
-        element: <MyContribution />,
+        element: (
+          <PrivateRouter>
+            <MyContribution />
+          </PrivateRouter>
+        ),
       },
       {
         path: "/login",

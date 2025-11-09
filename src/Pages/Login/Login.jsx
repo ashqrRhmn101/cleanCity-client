@@ -1,10 +1,11 @@
 import React, { use, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
 const Login = () => {
   const { signInUser, googleSignin } = use(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [error, setError] = useState();
 
   const handleSignIn = (e) => {
