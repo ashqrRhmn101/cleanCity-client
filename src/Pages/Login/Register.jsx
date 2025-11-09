@@ -1,12 +1,16 @@
 import React, { use, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router";
+import Loading from "../Loading";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const { setUser, createUser, userPhotoURL, googleSignin } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
 
   // CREATE uSER
   const handleRegister = (e) => {
@@ -17,32 +21,60 @@ const Register = () => {
     const password = e.target.password.value;
 
     // console.log(name, image, email, password);
+    // // Reset
+    setError("");
+    setLoading(true);
 
+    // Password "regEx" ..............
+    const passwordPattern = /^.{6,}$/;
+    const passwordAllPattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{7,}$/;
+
+    if (!passwordPattern.test(password)) {
+      // console.log("password don't match");
+      setError("Password must be 6 character");
+      setLoading(false);
+      return;
+    }
+
+    if (!passwordAllPattern.test(password)) {
+      setError(
+        "Password must be over 6 characters, contain upper & lower case letters, and at least one special character!"
+      );
+      setLoading(false);
+      return;
+    }
+
+    // create User
     createUser(email, password)
       .then((result) => {
         userPhotoURL({ displayName: name, photoURL: image })
           .then(() => {
             setUser({ ...result.user, displayName: name, photoURL: image });
+            toast.success("Registration Successful!");
+            setLoading(false);
             navigate(`${location.state ? location.state : "/"}`);
-            // navigate("/");
+            e.target.reset();
           })
           .catch((error) => {
-            // console.log(error.message);
             setError(error.message);
+            setLoading(false);
           });
       })
       .catch((error) => {
-        // console.log(error.message);
         setError(error.message);
+        setLoading(false);
       });
   };
 
   // Google with SignIn
   const handleGoogleSignIn = () => {
+    setLoading(true);
     googleSignin()
       .then((result) => {
         console.log(result.user);
-        // toast.success("Registration Successful!");
+        toast.success("Registration Successful!");
+        setLoading(false);
         setTimeout(
           () => navigate(`${location.state ? location.state : "/"}`),
           1500
@@ -52,6 +84,10 @@ const Register = () => {
         setError(error.message);
       });
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>
@@ -65,6 +101,7 @@ const Register = () => {
               name="name"
               className="input"
               placeholder="Your Name"
+              required
             />
             <label className="label">Photo URL</label>
             <input
@@ -72,6 +109,7 @@ const Register = () => {
               name="image"
               className="input"
               placeholder="Your Photo URL"
+              required
             />
             <label className="label">Email</label>
             <input
@@ -79,6 +117,7 @@ const Register = () => {
               name="email"
               className="input"
               placeholder="Email"
+              required
             />
             <label className="label">Password</label>
             <input
@@ -86,6 +125,7 @@ const Register = () => {
               name="password"
               className="input"
               placeholder="Password"
+              required
             />
 
             <button className="btn btn-neutral mt-4">Register</button>

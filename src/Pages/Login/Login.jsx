@@ -1,27 +1,38 @@
 import React, { use, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router";
+import Loading from "../Loading";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { signInUser, googleSignin } = use(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
 
   const handleSignIn = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+    // console.log(email, password);
+
+    // // Reset
+    setError("");
+    setLoading(true);
 
     signInUser(email, password)
       .then((result) => {
         console.log(result);
+        toast.success("Login Successful!");
+        setLoading(false);
         navigate(`${location.state ? location.state : "/"}`);
         // navigate("/");
+        e.target.reset();
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.message);
+        setLoading(false);
       });
   };
 
@@ -30,6 +41,7 @@ const Login = () => {
     googleSignin()
       .then((result) => {
         console.log(result.user);
+        toast.success("Login Successful!");
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
@@ -37,6 +49,9 @@ const Login = () => {
       });
   };
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div>
       <h1 className="text-5xl font-bold">Login now!</h1>
@@ -49,6 +64,7 @@ const Login = () => {
               name="email"
               className="input"
               placeholder="Email"
+              required
             />
             <label className="label">Password</label>
             <input
@@ -56,6 +72,7 @@ const Login = () => {
               name="password"
               className="input"
               placeholder="Password"
+              required
             />
             <div>
               <a className="link link-hover">Forgot password?</a>
