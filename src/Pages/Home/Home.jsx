@@ -11,7 +11,9 @@ const Home = () => {
   //   console.log(issues);
   return (
     <div className="my-10 text-center">
-      <h1>Home Issues</h1>
+      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+        Latest Issues
+      </h2>
       {/* Issues Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4">
         {issues.map((issue) => (

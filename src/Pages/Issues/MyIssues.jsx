@@ -13,7 +13,9 @@ const MyIssues = () => {
     if (user?.email) {
       fetch(`http://localhost:3000/issues?email=${user.email}`)
         .then((res) => res.json())
-        .then((data) => setIssues(data))
+        .then((data) => {
+          setIssues(data);
+        })
         .catch((err) => console.error("Error loading issues:", err));
     }
   }, [user?.email]);
@@ -59,7 +61,9 @@ const MyIssues = () => {
 
         // Refresh issues instantly
         const updated = issues.map((issue) =>
-          issue._id === selectedIssue._id ? { ...issue, ...updatedIssue } : issue
+          issue._id === selectedIssue._id
+            ? { ...issue, ...updatedIssue }
+            : issue
         );
         setIssues(updated);
       } else {
@@ -106,6 +110,7 @@ const MyIssues = () => {
             });
           }
         } catch (err) {
+          console.error("Error deleting issue:", err);
           Swal.fire({
             icon: "error",
             title: "Error deleting issue",

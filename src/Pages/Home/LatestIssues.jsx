@@ -13,7 +13,7 @@ const LatestIssues = ({ issue }) => {
   return (
     <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700">
       {/* Image */}
-      <div className="w-full overflow-hidden">
+      <div className="w-full h-[200px] overflow-hidden">
         <img
           src={image}
           alt={title}
