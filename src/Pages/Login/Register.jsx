@@ -3,6 +3,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router";
 import Loading from "../Loading";
 import toast from "react-hot-toast";
+import { Eye, EyeClosed } from "lucide-react";
 
 const Register = () => {
   const { setUser, createUser, userPhotoURL, googleSignin } = use(AuthContext);
@@ -10,7 +11,7 @@ const Register = () => {
   const location = useLocation();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  // const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // CREATE uSER
   const handleRegister = (e) => {
@@ -85,14 +86,22 @@ const Register = () => {
       });
   };
 
+  // ShowPassword
+  const handleShowPassword = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
   if (loading) {
     return <Loading />;
   }
 
   return (
     <div>
-      <h1 className="text-5xl font-bold">Register now!</h1>
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto m-9">
+        <h1 className="text-center p-5 font-bold text-2xl text-[#303082]">
+          Register your account
+        </h1>
         <form onSubmit={handleRegister} className="card-body">
           <fieldset className="fieldset">
             <label className="label">Name</label>
@@ -119,14 +128,24 @@ const Register = () => {
               placeholder="Email"
               required
             />
+            {/* Password */}
             <label className="label">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="input"
-              placeholder="Password"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "type" : "password"}
+                name="password"
+                className="input"
+                placeholder="Password"
+                required
+              />
+
+              <button
+                onClick={handleShowPassword}
+                className="absolute right-5 top-3"
+              >
+                {showPassword ? <Eye size={18} /> : <EyeClosed size={18} />}
+              </button>
+            </div>
 
             <button className="btn btn-neutral mt-4">Register</button>
           </fieldset>
