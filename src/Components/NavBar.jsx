@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
@@ -42,6 +42,18 @@ const NavBar = () => {
     </>
   );
 
+  // dark & Light added
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  // Toggle Handler
+  const handleThemeToggle = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -71,53 +83,62 @@ const NavBar = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl font-bold">
-          <span>🧹Clean</span><span className="text-green-500">City</span>
+          <span>🧹Clean</span>
+          <span className="text-green-500">City</span>
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-     
+
       {/* Button */}
       <div className="navbar-end pr-3">
-         {/* --------------- */}
-      <label className="flex cursor-pointer gap-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="5" />
-          <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-        </svg>
-        <input
-          type="checkbox"
-          value="synthwave"
-          className="toggle theme-controller"
-        />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </label>
-      {/* ---------------- */}
+        {/* Dark/Light Toggle --------------- */}
+        <label className="flex cursor-pointer items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+          </svg>
+
+          {/* Toggle Button */}
+          <input
+            type="checkbox"
+            onChange={handleThemeToggle}
+            checked={theme === "dark"}
+            className="toggle toggle-success"
+          />
+
+          {/* Dark Icon */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </label>
+        {/* ---------------- */}
         {user ? (
-          <button onClick={handleLogOut} className="btn btn-outline btn-primary">
+          <button
+            onClick={handleLogOut}
+            className="btn btn-outline btn-primary"
+          >
             Logout
           </button>
         ) : (
