@@ -77,6 +77,7 @@ const IssueDetails = () => {
       });
 
       if (res.ok) {
+        bidModalRef.current.close();
         Swal.fire({
           // position: "top-end",
           icon: "success",
@@ -85,7 +86,12 @@ const IssueDetails = () => {
           timer: 1500,
         });
         form.reset();
-        bidModalRef.current.close();
+
+        // contributions
+        contributionData._id = res.ok;
+        const newContributionData = [...contributions, contributionData];
+        newContributionData.sort((a, b) => b.amount - a.amount);
+        setContributions(newContributionData);
       } else {
         Swal.fire({
           icon: "error",
