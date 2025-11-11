@@ -49,7 +49,7 @@ const AddIssues = () => {
           text: "Your issue has been submitted.",
           timer: 1500,
           showConfirmButton: false,
-          position: "top-end",
+        //   position: "top-end",
         });
         form.reset();
       } else {
