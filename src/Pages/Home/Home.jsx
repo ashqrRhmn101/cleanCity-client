@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import LatestIssues from "./LatestIssues";
 import { Link } from "react-router";
+import HeroBanner from "../HeroBanner";
 
 const latestIssues = fetch("http://localhost:3000/latest-issues").then((res) =>
   res.json()
@@ -11,6 +12,9 @@ const Home = () => {
   //   console.log(issues);
   return (
     <div className="my-10 text-center">
+      <div>
+        <HeroBanner/>
+      </div>
       <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
         Latest Issues
       </h2>

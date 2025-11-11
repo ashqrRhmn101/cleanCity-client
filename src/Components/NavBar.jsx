@@ -117,16 +117,16 @@ const NavBar = () => {
       </label>
       {/* ---------------- */}
         {user ? (
-          <button onClick={handleLogOut} className="btn">
+          <button onClick={handleLogOut} className="btn btn-outline btn-primary">
             Logout
           </button>
         ) : (
           <>
             <NavLink to="/login">
-              <button className="btn">Login</button>
+              <button className="btn btn-outline btn-success">Login</button>
             </NavLink>
             <NavLink to="/register">
-              <button className="btn">Register</button>
+              <button className="btn btn-outline btn-success">Register</button>
             </NavLink>
           </>
         )}
