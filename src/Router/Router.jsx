@@ -10,11 +10,13 @@ import MyIssues from "../Pages/Issues/MyIssues";
 import MyContribution from "../Pages/Issues/MyContribution";
 import PrivateRouter from "../Provider/PrivateRouter";
 import IssueDetails from "../Pages/Home/IssueDetails";
+import Error from "../Pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <Error/>,
     children: [
       {
         path: "/",
