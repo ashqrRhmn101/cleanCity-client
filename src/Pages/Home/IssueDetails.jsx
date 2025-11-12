@@ -116,7 +116,7 @@ const IssueDetails = () => {
         <div className="mb-4">
           <Link
             to="/issues"
-            className="text-sm flex items-center gap-1 text-gray-600 hover:text-green-600 transition-all"
+            className="text-sm flex items-center gap-1 hover:text-green-600 transition-all"
           >
             <span className="text-lg">←</span> Back To Issues
           </Link>
@@ -151,10 +151,8 @@ const IssueDetails = () => {
 
           {/* RIGHT SIDE */}
           <div>
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-black mb-2">
-              {title}
-            </h2>
-            <div className="badge badge-outline mb-3 capitalize text-gray-900 dark:text-green-500">
+            <h2 className="text-2xl font-bold  mb-2">{title}</h2>
+            <div className="badge badge-outline mb-3 capitalize dark:text-green-400">
               {category}
             </div>
 
@@ -378,7 +376,7 @@ const IssueDetails = () => {
               {contributions.length > 0 ? (
                 contributions.map((c, index) => (
                   <tr key={c._id} className="hover:bg-gray-100">
-                    <td>{index + 1}</td>
+                    <td className="text-amber-500">{index + 1}</td>
                     <td className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="w-10 h-10 rounded-full">
@@ -401,7 +399,7 @@ const IssueDetails = () => {
                     <td className="text-gray-700">{c.email}</td>
                     <td className="text-gray-700">{c.phone}</td>
                     <td className="font-semibold text-green-600">
-                      ৳{c.amount}
+                      ${c.amount}
                     </td>
                     <td className="text-gray-600">{c.date}</td>
                   </tr>

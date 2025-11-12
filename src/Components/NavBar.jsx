@@ -80,7 +80,50 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             {links}
+
+            {/* Dark/Light Toggle --------------- */}
+        <label className="flex cursor-pointer items-center gap-2 pr-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+          </svg>
+
+          {/* Toggle Button */}
+          <input
+            type="checkbox"
+            onChange={handleThemeToggle}
+            checked={theme === "dark"}
+            className="toggle toggle-success"
+          />
+
+          {/* Dark Icon */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </label>
+        {/* ---------------- */}
           </ul>
+          
         </div>
         <Link to="/" className="btn btn-ghost text-xl font-bold">
           <span>🧹Clean</span>
@@ -94,7 +137,7 @@ const NavBar = () => {
       {/* Button */}
       <div className="navbar-end pr-3">
         {/* Dark/Light Toggle --------------- */}
-        <label className="flex cursor-pointer items-center gap-2">
+        <label className="flex cursor-pointer items-center gap-2 pr-3 hidden md:flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -144,7 +187,7 @@ const NavBar = () => {
         ) : (
           <>
             <NavLink to="/login">
-              <button className="btn btn-outline btn-success">Login</button>
+              <button className="btn btn-outline btn-success pr-3">Login</button>
             </NavLink>
             <NavLink to="/register">
               <button className="btn btn-outline btn-success">Register</button>
@@ -159,7 +202,7 @@ const NavBar = () => {
           role="button"
           className="btn btn-ghost btn-circle avatar group relative"
         >
-          <div className="w-10 rounded-full">
+          <div className="w-12 border-2 p-1 rounded-full">
             <img
               alt="Tailwind CSS Navbar component"
               src={

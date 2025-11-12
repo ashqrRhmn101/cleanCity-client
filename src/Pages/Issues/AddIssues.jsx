@@ -5,7 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 const AddIssues = () => {
   const { user } = useContext(AuthContext);
 
-  // ✅ Form Submit Handler
+  // Form Submit Handler
   const handleAddIssue = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -70,8 +70,8 @@ const AddIssues = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-base-100 rounded-xl shadow-md mt-8">
-      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-black">
+    <div className="max-w-3xl mx-auto p-6 bg-blue-400 rounded-xl shadow-md mt-8">
+      <h2 className="text-2xl font-bold text-center mb-6 ">
         🧹 Report a New Community Issue
       </h2>
 
@@ -152,7 +152,7 @@ const AddIssues = () => {
         {/* Amount */}
         <div>
           <label className="label">
-            <span className="label-text">Suggested Fix Budget (৳)</span>
+            <span className="label-text">Suggested Fix Budget ($)</span>
           </label>
           <input
             type="number"

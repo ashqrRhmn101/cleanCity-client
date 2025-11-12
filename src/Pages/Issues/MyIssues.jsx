@@ -122,7 +122,7 @@ const MyIssues = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-base-100 rounded-xl">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+      <h2 className="text-3xl font-bold mb-6 text-center">
         🧾 My Reported Issues
       </h2>
 

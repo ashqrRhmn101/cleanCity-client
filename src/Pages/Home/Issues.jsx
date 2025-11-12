@@ -8,13 +8,13 @@ const Issues = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold text-gray-800 my-6 text-center">
+      <h2 className="text-3xl font-bold my-6 text-center">
         Latest Issues
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 py-6">
         {data.map((issue) => {
-          const { _id, title, description, category, location, image } = issue;
+          const { _id, title, description, category, location, image,amount } = issue;
 
           return (
             <div
@@ -32,13 +32,16 @@ const Issues = () => {
 
               {/* Content */}
               <div className="p-5 flex flex-col justify-between">
-                <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
+                <div className="flex items-center  justify-between text-gray-800 dark:text-white">
+                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
                   {title}
                 </h2>
+                </div>
 
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
                   {description}
                 </p>
+                <h2 className="text-xl font-semibold text-green-600 mb-3">${amount}</h2>
 
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
@@ -49,6 +52,7 @@ const Issues = () => {
                     <MapPin size={16} />
                     <span>{location}</span>
                   </div>
+                  
                 </div>
 
                 <Link
