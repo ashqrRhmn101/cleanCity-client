@@ -11,11 +11,11 @@ const Home = () => {
   const issues = use(latestIssues);
   //   console.log(issues);
   return (
-    <div className="my-10 text-center">
+    <div className="mb-10 text-center">
       <div>
-        <HeroBanner/>
+        <HeroBanner />
       </div>
-      <h2 className="text-3xl font-bold mb-6 text-center">
+      <h2 className="text-3xl font-bold mt-16 mb-5 text-center">
         Latest Issues
       </h2>
       {/* Issues Grid */}

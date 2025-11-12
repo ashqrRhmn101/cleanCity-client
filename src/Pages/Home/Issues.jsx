@@ -7,9 +7,9 @@ const Issues = () => {
   // console.log("All Issues Data:", data);
 
   return (
-    <div>
+    <div className="container mx-auto">
       <h2 className="text-3xl font-bold my-6 text-center">
-        Latest Issues
+        ALL Issues
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 py-6">
