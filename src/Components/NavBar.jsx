@@ -2,30 +2,41 @@ import React, { use, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 const NavBar = () => {
   const { user, logOutUser } = use(AuthContext);
-  console.log(user);
 
   const handleLogOut = () => {
     logOutUser()
-      .then(() => {
-        toast.success("Logout Successful!");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(() => toast.success("Logout Successful!"))
+      .catch((error) => console.log(error));
   };
 
+  // Theme setup
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const handleThemeToggle = () =>
+    setTheme(theme === "light" ? "dark" : "light");
+
+  // Navigation Links
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" className="font-medium">
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/issues">All Issues</NavLink>
+        <NavLink to="/issues" className="font-medium">
+          All Issues
+        </NavLink>
       </li>
-      {/* All Issues, Add Issues, My Issues, My Contribution, */}
+
       {user && (
         <>
           <li>
@@ -42,21 +53,11 @@ const NavBar = () => {
     </>
   );
 
-  // dark & Light added
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  // Toggle Handler
-  const handleThemeToggle = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100 shadow-md sticky top-0 z-50 backdrop-blur-md">
+      {/* Left - Logo */}
       <div className="navbar-start">
+        {/* Mobile Dropdown */}
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
             <svg
@@ -66,159 +67,115 @@ const NavBar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+              />
             </svg>
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {links}
 
-            {/* Dark/Light Toggle --------------- */}
-        <label className="flex cursor-pointer items-center gap-2 pr-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="5" />
-            <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-          </svg>
-
-          {/* Toggle Button */}
-          <input
-            type="checkbox"
-            onChange={handleThemeToggle}
-            checked={theme === "dark"}
-            className="toggle toggle-success"
-          />
-
-          {/* Dark Icon */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </label>
-        {/* ---------------- */}
+            {/* Dark/Light Toggle for Mobile */}
+            <li className="mt-3">
+              <button
+                onClick={handleThemeToggle}
+                className="flex items-center justify-center gap-2 text-sm font-medium"
+              >
+                {theme === "light" ? (
+                  <>
+                    <FaMoon className="text-lg text-gray-500" /> Dark Mode
+                  </>
+                ) : (
+                  <>
+                    <FaSun className="text-lg text-yellow-400" /> Light Mode
+                  </>
+                )}
+              </button>
+            </li>
           </ul>
-          
         </div>
-        <Link to="/" className="btn btn-ghost text-xl font-bold">
-          <span>🧹Clean</span>
-          <span className="text-green-500">City</span>
+
+        {/* Brand Name */}
+        <Link to="/" className="btn btn-ghost normal-case text-2xl font-bold">
+          🧹<span className="text-green-500">Clean</span>City
         </Link>
       </div>
+
+      {/* Center - Links */}
       <div className="navbar-center hidden md:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal px-1 font-medium">{links}</ul>
       </div>
 
-      {/* Button */}
-      <div className="navbar-end pr-3">
-        {/* Dark/Light Toggle --------------- */}
-        <label className="flex cursor-pointer items-center gap-2 pr-3 hidden md:flex">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="5" />
-            <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-          </svg>
+      {/* Right - Theme + Auth + Profile */}
+      <div className="navbar-end flex items-center gap-3">
+        {/* Theme Toggle (Desktop) */}
+        <button
+          onClick={handleThemeToggle}
+          className="hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:bg-base-200 transition"
+        >
+          {theme === "light" ? (
+            <FaMoon className="text-lg text-gray-600" />
+          ) : (
+            <FaSun className="text-lg text-yellow-400" />
+          )}
+        </button>
 
-          {/* Toggle Button */}
-          <input
-            type="checkbox"
-            onChange={handleThemeToggle}
-            checked={theme === "dark"}
-            className="toggle toggle-success"
-          />
-
-          {/* Dark Icon */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </label>
-        {/* ---------------- */}
+        {/* Auth Buttons */}
         {user ? (
-          <button
-            onClick={handleLogOut}
-            className="btn btn-outline btn-primary"
-          >
-            Logout
-          </button>
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-11 rounded-full border-2 border-green-500">
+                <img
+                  alt="User Avatar"
+                  src={
+                    user.photoURL ||
+                    "https://img.icons8.com/?size=100&id=oO0pZgktLNpK&format=png"
+                  }
+                />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <a className="justify-between">
+                  Profile
+                  <span className="badge badge-success text-white">New</span>
+                </a>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <button onClick={handleLogOut}>Logout</button>
+              </li>
+            </ul>
+          </div>
         ) : (
-          <>
+          <div className="flex gap-2">
             <NavLink to="/login">
-              <button className="btn btn-outline btn-success pr-3">Login</button>
+              <button className="btn btn-sm btn-outline btn-success">
+                Login
+              </button>
             </NavLink>
             <NavLink to="/register">
-              <button className="btn btn-outline btn-success">Register</button>
+              <button className="btn btn-sm btn-success text-white">
+                Register
+              </button>
             </NavLink>
-          </>
-        )}
-      </div>
-      {/* PhotoURL */}
-      <div className="dropdown dropdown-end">
-        <div
-          tabIndex={0}
-          role="button"
-          className="btn btn-ghost btn-circle avatar group relative"
-        >
-          <div className="w-12 border-2 p-1 rounded-full">
-            <img
-              alt="Tailwind CSS Navbar component"
-              src={
-                user
-                  ? user.photoURL
-                  : "https://img.icons8.com/?size=100&id=oO0pZgktLNpK&format=png&color=000000"
-              }
-            />
           </div>
-          {/* User Name */}
-          {user && (
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              {user.displayName}
-            </span>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );
