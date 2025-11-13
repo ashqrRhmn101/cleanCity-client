@@ -4,7 +4,7 @@ import { RingLoader } from "react-spinners";
 const Loading = () => {
   return (
     <div className="container mx-auto flex justify-center items-center min-h-screen">
-      <RingLoader />
+      <RingLoader color="green"/>
     </div>
   );
 };

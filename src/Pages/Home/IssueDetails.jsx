@@ -13,6 +13,7 @@ const IssueDetails = () => {
   const {
     _id,
     title,
+    status,
     category,
     location,
     description,
@@ -22,6 +23,7 @@ const IssueDetails = () => {
     email,
     photoURL,
   } = issue || {};
+  // console.log(issue)
 
   // Fetch Contributions for this Issue
   useEffect(() => {
@@ -152,9 +154,17 @@ const IssueDetails = () => {
           {/* RIGHT SIDE */}
           <div>
             <h2 className="text-2xl font-bold  mb-2">{title}</h2>
-            <div className="badge badge-outline mb-3 capitalize dark:text-green-400">
-              {category}
-            </div>
+            {status && (
+              <div
+                className={`badge badge-outline capitalize px-3 py-1 text-sm font-semibold ${
+                  status === "ongoing"
+                    ? "text-green-500 border-green-400"
+                    : "text-red-500 border-red-400"
+                }`}
+              >
+                {status}
+              </div>
+            )}
 
             {/* Suggested Budget */}
             <div className="text-2xl font-semibold text-green-600 mb-1 flex items-center gap-2">

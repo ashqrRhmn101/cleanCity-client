@@ -2,8 +2,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const images = [
-  "https://i.ibb.co.com/VYmNwrwx/2110-q702-012-S-m005-c12-ecology-pollution-cleaning.jpg",
-  "https://i.ibb.co.com/tMRdDqH4/modern-buildings-1127-2851.jpg",
+  "https://i.ibb.co.com/j916V15V/Waste-Problem-980x551.jpg",
+  "https://i.ibb.co.com/My77VHzc/volunteers-clean-garbage-176516-1174.jpg",
   "https://i.ibb.co.com/1tGSwZRJ/city-waste-recycling-concept-with-garbage-truck-garbage-collector-40816-28.jpg",
 ];
 

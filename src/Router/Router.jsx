@@ -11,6 +11,7 @@ import MyContribution from "../Pages/Issues/MyContribution";
 import PrivateRouter from "../Provider/PrivateRouter";
 import IssueDetails from "../Pages/Home/IssueDetails";
 import Error from "../Pages/Error";
+import Loading from "../Pages/Loading";
 
 const router = createBrowserRouter([
   {
@@ -26,11 +27,13 @@ const router = createBrowserRouter([
         path: "/issues",
         element: <Issues />,
         loader: () => fetch("http://localhost:3000/issues"),
+        hydrateFallbackElement:<Loading/>
       },
       {
         path: "/issueDetails/:id",
         element: <PrivateRouter><IssueDetails/></PrivateRouter>,
         loader: ({params}) => fetch(`http://localhost:3000/issues/${params.id}`),
+        hydrateFallbackElement:<Loading/>
       },
       {
         path: "/addIssues",
