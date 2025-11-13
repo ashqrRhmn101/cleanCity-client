@@ -157,13 +157,13 @@ const MyIssues = () => {
               {issues.length > 0 ? (
                 issues.map((issue, index) => (
                   <tr key={issue._id} className="hover:bg-gray-100">
-                    <td>{index + 1}</td>
+                    <td className="text-amber-500">{index + 1}</td>
                     <td className="font-semibold text-gray-800">
                       {issue.title}
                     </td>
                     <td>{issue.category}</td>
                     <td className="font-semibold text-green-600">
-                      ৳{issue.amount}
+                      ${issue.amount}
                     </td>
                     <td>
                       <span
@@ -239,16 +239,16 @@ const MyIssues = () => {
                   required
                 >
                   <option value="Garbage">Garbage</option>
-                  <option value="Broken Footpath">Broken Footpath</option>
-                  <option value="Illegal Dumping">Illegal Dumping</option>
-                  <option value="Waterlogging">Waterlogging</option>
+                  <option value="Broken Public Property">Broken Public Property</option>
+                  <option value="Illegal Construction">Illegal Construction</option>
+                  <option value="Road Damage">Road Damage</option>
                 </select>
               </div>
 
               {/* Amount */}
               <div>
                 <label className="label">
-                  <span className="label-text">Amount (৳)</span>
+                  <span className="label-text">Amount ($)</span>
                 </label>
                 <input
                   type="number"

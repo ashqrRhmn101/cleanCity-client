@@ -326,7 +326,7 @@ const IssueDetails = () => {
                   name="address"
                   className="input input-bordered w-full"
                   placeholder="Your address"
-                  required
+                  // required
                 />
               </div>
 

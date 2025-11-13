@@ -10,6 +10,8 @@ const LatestIssues = ({ issue }) => {
   const shortDesc =
     description.length > 80 ? description.slice(0, 80) + "..." : description;
 
+    const shortTitle = title.length > 70 ? title.slice(0,70) + "..." : title;
+
   return (
     <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700">
       {/* Image */}
@@ -24,7 +26,7 @@ const LatestIssues = ({ issue }) => {
       {/* Content */}
       <div className="p-5 flex flex-col justify-between">
         <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-          {title}
+          {shortTitle}
         </h2>
 
         <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
