@@ -102,7 +102,7 @@ const NavBar = () => {
         </div>
 
         {/* Brand Name */}
-        <Link to="/" className="btn btn-ghost normal-case text-2xl font-bold">
+        <Link to="/" className="btn btn-ghost normal-case text-lg md:text-2xl font-bold">
           🧹<span className="text-green-500">Clean</span>City
         </Link>
       </div>

@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { Typewriter } from "react-simple-typewriter";
 
 const images = [
   "https://i.ibb.co.com/KjZRkJwG/garbage-issue.jpg",
@@ -32,14 +33,24 @@ const HeroBanner = () => {
           ❄ Community Feed
         </span>
 
-        <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+        <h1 className="text-3xl md:text-4xl font-extrabold leading-tight">
           Track Progress in <br />
-          <span className="text-green-600">Your Area</span>
+          <span className="text-green-600">
+            <Typewriter
+              words={["Your Area"]}
+              loop={true}
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={40}
+              delaySpeed={1500}
+            />
+          </span>
         </h1>
 
         <p className="text-gray-800 dark:text-gray-500 text-lg">
-          Browse open and resolved issues, upvote priorities, and follow
-          status updates in your neighborhood.
+          Browse open and resolved issues, upvote priorities, and follow status
+          updates in your neighborhood.
         </p>
 
         <Link to="/issues">
