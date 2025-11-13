@@ -83,7 +83,7 @@ const MyIssues = () => {
     }
   };
 
-  // 🔹 Delete Issue
+  // Delete Issue
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -176,7 +176,7 @@ const MyIssues = () => {
                         {issue.status}
                       </span>
                     </td>
-                    <td className="text-center flex gap-2 justify-center">
+                    <td className="text-center flex justify-between items-center gap-2">
                       <button
                         onClick={() => handleEdit(issue)}
                         className="btn btn-xs bg-blue-100 text-blue-700 border border-blue-300 hover:bg-blue-200"
