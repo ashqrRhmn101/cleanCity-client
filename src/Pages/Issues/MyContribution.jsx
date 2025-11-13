@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { FileDown } from "lucide-react";
+import { FileDown, HeartHandshake } from "lucide-react";
 import Swal from "sweetalert2";
 
 const MyContribution = () => {
@@ -59,8 +59,8 @@ const MyContribution = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6 bg-base-100 rounded-xl">
-      <h2 className="text-3xl font-bold mb-6 text-center">
-        💚 My Contributions
+      <h2 className="text-3xl font-bold mb-6 text-center flex justify-center items-center gap-4">
+        <span>My Contributions</span> <span> <HeartHandshake color="orange"/></span>
       </h2>
 
       <div className="bg-gray-50 p-6 rounded-xl shadow-md mt-4">

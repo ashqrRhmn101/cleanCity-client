@@ -70,7 +70,7 @@ const AddIssues = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-gradient-to-r from-green-400 to-blue-400 rounded-xl shadow-md mt-8">
+    <div className="max-w-3xl mx-auto p-6 bg-gradient-to-r from-green-200 to-blue-200 rounded-xl shadow-md mt-8">
       <h2 className="text-2xl font-bold text-center mb-6 ">
         🧹 Report a New Community Issue
       </h2>

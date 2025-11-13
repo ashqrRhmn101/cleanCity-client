@@ -148,7 +148,7 @@ const Home = () => {
       </section>
 
       {/* Volunteer / CTA Section */}
-      <section className="relative mt-24 overflow-hidden bg-gradient-to-r from-green-600 via-blue-600 to-cyan-600 text-white py-20 text-center">
+      <section className="relative mt-24 overflow-hidden bg-gradient-to-r from-green-600 via-blue-600 to-cyan-600 text-white py-20 text-center container mx-auto">
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/clean-gray-paper.png')]"></div>
 

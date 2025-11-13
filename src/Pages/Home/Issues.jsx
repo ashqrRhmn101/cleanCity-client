@@ -130,6 +130,7 @@ const Issues = () => {
               amount,
               status,
             } = issue;
+            const shortTitle = title.length > 70 ? title.slice(0,70) + "..." : title;
 
             return (
               <div
@@ -163,8 +164,8 @@ const Issues = () => {
 
                 {/* Content */}
                 <div className="p-5 flex flex-col justify-between text-left">
-                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">
-                    {title}
+                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
+                    {shortTitle}
                   </h2>
 
                   <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2 mb-3">
@@ -172,7 +173,7 @@ const Issues = () => {
                   </p>
 
                   <h2 className="text-lg font-semibold text-green-600 mb-3">
-                    ৳{amount}
+                    ${amount}
                   </h2>
 
                   <div className="flex items-center justify-between mb-4 text-sm text-gray-500 dark:text-gray-400">

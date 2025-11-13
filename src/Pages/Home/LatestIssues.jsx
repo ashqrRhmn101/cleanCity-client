@@ -4,13 +4,13 @@ import { Link } from "react-router";
 
 const LatestIssues = ({ issue }) => {
   const { _id, title, description, category, location, image } = issue;
-//   console.log(issue.category);
+  //   console.log(issue.category);
 
   // description
   const shortDesc =
     description.length > 80 ? description.slice(0, 80) + "..." : description;
 
-    const shortTitle = title.length > 70 ? title.slice(0,70) + "..." : title;
+  const shortTitle = title.length > 70 ? title.slice(0, 70) + "..." : title;
 
   return (
     <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700">

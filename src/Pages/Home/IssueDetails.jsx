@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { DollarSign, Tag, MapPin, Calendar } from "lucide-react";
+import { DollarSign, Tag, MapPin, Calendar, HeartHandshake } from "lucide-react";
 
 const IssueDetails = () => {
   const issue = useLoaderData();
@@ -225,9 +225,9 @@ const IssueDetails = () => {
             {/* Action Button */}
             <button
               onClick={handleBidModalOpen}
-              className="btn btn-success w-full mt-5"
+              className="btn btn-success w-full mt-5 hover:text-white"
             >
-              Contribute / Help Fix This Issue
+              Contribute Issue <HeartHandshake color="orange"/> 
             </button>
           </div>
         </div>
