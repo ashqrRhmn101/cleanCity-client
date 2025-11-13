@@ -102,9 +102,9 @@ const AddIssues = () => {
           >
             <option value="">Select a category</option>
             <option value="Garbage">Garbage</option>
-            <option value="Broken Footpath">Broken Footpath</option>
-            <option value="Illegal Dumping">Illegal Dumping</option>
-            <option value="Waterlogging">Waterlogging</option>
+            <option value="Broken Footpath">Broken public property</option>
+            <option value="Illegal Dumping">Illegal construction</option>
+            <option value="Waterlogging">Road damage</option>
           </select>
         </div>
 

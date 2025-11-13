@@ -4,15 +4,21 @@ import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
 
 const Issues = () => {
   const allIssues = useLoaderData();
-  const [filter, setFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [categoryFilter, setCategoryFilter] = useState("all");
 
-  //Filter
-  const filteredIssues =
-    filter === "all"
-      ? allIssues
-      : allIssues.filter(
-          (issue) => issue.status?.toLowerCase() === filter.toLowerCase()
-        );
+  // Combined Filtering Logic
+  const filteredIssues = allIssues.filter((issue) => {
+    const statusMatch =
+      statusFilter === "all" ||
+      issue.status?.toLowerCase() === statusFilter.toLowerCase();
+
+    const categoryMatch =
+      categoryFilter === "all" ||
+      issue.category?.toLowerCase() === categoryFilter.toLowerCase();
+
+    return statusMatch && categoryMatch;
+  });
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -22,52 +28,91 @@ const Issues = () => {
           🧾 All Reported <span className="text-amber-300">Issues</span>
         </h2>
 
-        {/* Status Filter Dropdown */}
-        <div className="dropdown dropdown-bottom dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="flex items-center justify-between gap-2 px-5 py-2 border border-gray-300 rounded-lg text-gray-900 dark:text-gray-700 cursor-pointer hover:bg-base-300 transition"
-          >
-            <span>
-              {filter === "all"
-                ? "All Status"
-                : filter === "ongoing"
-                ? "Ongoing"
-                : "Ended"}
-            </span>
-            <ChevronDown size={18} />
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Category Filter */}
+          <div className="dropdown dropdown-bottom">
+            <div
+              tabIndex={0}
+              role="button"
+              className="flex items-center justify-between gap-2 px-5 py-2 border border-gray-300 rounded-lg text-gray-500 cursor-pointer hover:bg-base-300 transition"
+            >
+              <span>
+                {categoryFilter === "all"
+                  ? "All Categories"
+                  : categoryFilter.charAt(0).toUpperCase() +
+                    categoryFilter.slice(1)}
+              </span>
+              <ChevronDown size={18} />
+            </div>
+
+            <ul
+              tabIndex={-1}
+              className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg"
+            >
+              {[
+                "all",
+                "garbage",
+                "illegal construction",
+                "broken public property",
+                "road damage",
+              ].map((cat) => (
+                <li key={cat}>
+                  <button
+                    onClick={() => setCategoryFilter(cat)}
+                    className={`capitalize ${
+                      categoryFilter === cat
+                        ? "active text-green-600 font-semibold"
+                        : ""
+                    }`}
+                  >
+                    {cat === "all"
+                      ? "All Categories"
+                      : cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <ul
-            tabIndex={-1}
-            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-44 p-2 shadow-lg"
-          >
-            <li>
-              <button
-                onClick={() => setFilter("all")}
-                className={`${filter === "all" ? "active text-green-600 font-semibold" : ""}`}
-              >
-                All Issues
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => setFilter("ongoing")}
-                className={`${filter === "ongoing" ? "active text-green-600 font-semibold" : ""}`}
-              >
-                Ongoing
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => setFilter("ended")}
-                className={`${filter === "ended" ? "active text-green-600 font-semibold" : ""}`}
-              >
-                Ended
-              </button>
-            </li>
-          </ul>
+          {/* Status Filter */}
+          <div className="dropdown dropdown-bottom dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="flex items-center justify-between gap-2 px-5 py-2 border border-gray-300 rounded-lg text-gray-500 cursor-pointer hover:bg-base-300 transition"
+            >
+              <span>
+                {statusFilter === "all"
+                  ? "All Status"
+                  : statusFilter === "ongoing"
+                  ? "Ongoing"
+                  : "Ended"}
+              </span>
+              <ChevronDown size={18} />
+            </div>
+
+            <ul
+              tabIndex={-1}
+              className="dropdown-content menu bg-base-100 rounded-box z-[1] w-44 p-2 shadow-lg"
+            >
+              {["all", "ongoing", "ended"].map((status) => (
+                <li key={status}>
+                  <button
+                    onClick={() => setStatusFilter(status)}
+                    className={`capitalize ${
+                      statusFilter === status
+                        ? "active text-green-600 font-semibold"
+                        : ""
+                    }`}
+                  >
+                    {status === "all"
+                      ? "All Status"
+                      : status.charAt(0).toUpperCase() + status.slice(1)}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -94,7 +139,10 @@ const Issues = () => {
                 {/* Image */}
                 <div className="relative">
                   <img
-                    src={image || "https://via.placeholder.com/600x400?text=No+Image"}
+                    src={
+                      image ||
+                      "https://via.placeholder.com/600x400?text=No+Image+Available"
+                    }
                     alt={title}
                     className="w-full h-[220px] object-cover"
                   />
@@ -130,7 +178,7 @@ const Issues = () => {
                   <div className="flex items-center justify-between mb-4 text-sm text-gray-500 dark:text-gray-400">
                     <div className="flex items-center gap-2">
                       <Tag size={16} />
-                      <span>{category}</span>
+                      <span className="capitalize">{category}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin size={16} />
@@ -152,7 +200,7 @@ const Issues = () => {
       ) : (
         <div className="text-center py-10">
           <p className="text-gray-500 dark:text-gray-400 text-lg">
-            No issues found for this status.
+            No issues found for this filter.
           </p>
         </div>
       )}
