@@ -27,7 +27,9 @@ const IssueDetails = () => {
 
   // Fetch Contributions for this Issue
   useEffect(() => {
-    fetch(`http://localhost:3000/issues/contribution/${issue._id}`)
+    fetch(
+      `https://cleancity-server.vercel.app/issues/contribution/${issue._id}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setContributions(data);
@@ -68,15 +70,18 @@ const IssueDetails = () => {
     console.log("Saving contribution:", contributionData);
 
     // MongoDB get (API route)
-    //http://localhost:3000/contributions
+    //https://cleancity-server.vercel.app/contributions
     try {
-      const res = await fetch("http://localhost:3000/contribution", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(contributionData),
-      });
+      const res = await fetch(
+        "https://cleancity-server.vercel.app/contribution",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(contributionData),
+        }
+      );
 
       if (res.ok) {
         bidModalRef.current.close();

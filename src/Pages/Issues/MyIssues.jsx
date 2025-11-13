@@ -11,7 +11,7 @@ const MyIssues = () => {
   // Fetch only logged-in user's issues
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/issues?email=${user.email}`)
+      fetch(`https://cleancity-server.vercel.app/issues?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setIssues(data);
@@ -40,7 +40,7 @@ const MyIssues = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/issues/${selectedIssue._id}`,
+        `https://cleancity-server.vercel.app/issues/${selectedIssue._id}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -96,9 +96,12 @@ const MyIssues = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await fetch(`http://localhost:3000/issues/${id}`, {
-            method: "DELETE",
-          });
+          const res = await fetch(
+            `https://cleancity-server.vercel.app/issues/${id}`,
+            {
+              method: "DELETE",
+            }
+          );
           if (res.ok) {
             setIssues(issues.filter((i) => i._id !== id));
             Swal.fire({

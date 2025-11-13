@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <Error/>,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -26,14 +26,19 @@ const router = createBrowserRouter([
       {
         path: "/issues",
         element: <Issues />,
-        loader: () => fetch("http://localhost:3000/issues"),
-        hydrateFallbackElement:<Loading/>
+        loader: () => fetch("https://cleancity-server.vercel.app/issues"),
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "/issueDetails/:id",
-        element: <PrivateRouter><IssueDetails/></PrivateRouter>,
-        loader: ({params}) => fetch(`http://localhost:3000/issues/${params.id}`),
-        hydrateFallbackElement:<Loading/>
+        element: (
+          <PrivateRouter>
+            <IssueDetails />
+          </PrivateRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://cleancity-server.vercel.app/issues/${params.id}`),
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "/addIssues",

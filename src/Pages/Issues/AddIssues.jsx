@@ -34,7 +34,7 @@ const AddIssues = () => {
     console.log("New Issue:", issueData);
 
     try {
-      const res = await fetch("http://localhost:3000/issues", {
+      const res = await fetch("https://cleancity-server.vercel.app/issues", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const AddIssues = () => {
           text: "Your issue has been submitted.",
           timer: 1500,
           showConfirmButton: false,
-        //   position: "top-end",
+          //   position: "top-end",
         });
         form.reset();
       } else {
@@ -205,7 +205,10 @@ const AddIssues = () => {
         </div>
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn-success w-full mt-4 text-white">
+        <button
+          type="submit"
+          className="btn btn-success w-full mt-4 text-white"
+        >
           Submit Issue
         </button>
       </form>

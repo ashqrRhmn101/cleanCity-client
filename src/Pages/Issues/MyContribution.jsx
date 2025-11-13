@@ -9,7 +9,9 @@ const MyContribution = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/contribution?email=${user.email}`)
+      fetch(
+        `https://cleancity-server.vercel.app/contribution?email=${user.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setContributions(data);
