@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useLoaderData, Link } from "react-router";
 import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
+import notFound from "../../assets/notFound.json";
+import Lottie from "lottie-react";
 
 const Issues = () => {
   const allIssues = useLoaderData();
@@ -130,7 +132,8 @@ const Issues = () => {
               amount,
               status,
             } = issue;
-            const shortTitle = title.length > 70 ? title.slice(0,70) + "..." : title;
+            const shortTitle =
+              title.length > 70 ? title.slice(0, 70) + "..." : title;
 
             return (
               <div
@@ -199,7 +202,11 @@ const Issues = () => {
           })}
         </div>
       ) : (
-        <div className="text-center py-10">
+        <div className="text-center flex flex-col items-center justify-center overflow-hidden">
+          {/* Animated 404 Lottie */}
+          <div className="relative z-10 w-64 md:w-80 text-center">
+            <Lottie animationData={notFound} loop={true} />
+          </div>
           <p className="text-gray-500 dark:text-gray-400 text-lg">
             No issues found for this filter.
           </p>
