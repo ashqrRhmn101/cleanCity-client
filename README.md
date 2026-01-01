@@ -7,7 +7,7 @@ It's built using **React**, **Firebase**, **TailwindCSS**, and
 **DaisyUI** --- combining performance with a beautiful and responsive
 user interface.
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------------
 
 ## 🌐 Live Website
 
