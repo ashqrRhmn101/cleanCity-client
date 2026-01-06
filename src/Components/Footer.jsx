@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <h2 className="text-2xl font-bold text-white mb-2">
               <span>🧹Clean</span>
-              <span className="text-green-500"> City </span>  Portal
+              <span className="text-green-500"> City </span> Portal
             </h2>
             <p className="text-sm text-gray-400 max-w-sm">
               Together we can make our communities cleaner, greener, and safer.
@@ -21,28 +21,16 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <nav className="flex gap-6 text-sm font-medium">
-            <Link
-              to="/"
-              className="hover:text-green-400 transition-colors"
-            >
+            <Link to="/" className="hover:text-green-400 transition-colors">
               About
             </Link>
-            <Link
-              to="/"
-              className="hover:text-green-400 transition-colors"
-            >
+            <Link to="/" className="hover:text-green-400 transition-colors">
               Contact
             </Link>
-            <Link
-              to="/"
-              className="hover:text-green-400 transition-colors"
-            >
+            <Link to="/" className="hover:text-green-400 transition-colors">
               Volunteer
             </Link>
-            <Link
-              to="/"
-              className="hover:text-green-400 transition-colors"
-            >
+            <Link to="/" className="hover:text-green-400 transition-colors">
               Privacy Policy
             </Link>
           </nav>
@@ -79,7 +67,7 @@ const Footer = () => {
 
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com/in/ashqrrhmn/"
+              href="https://www.linkedin.com/in/lavib-uddin-ashik/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-500 transition-colors"
