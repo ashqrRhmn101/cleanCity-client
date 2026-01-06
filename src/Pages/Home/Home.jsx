@@ -45,12 +45,15 @@ const Home = () => {
   ];
 
   return (
-    <div className="">
+    <div className="" data-aos="fade-down">
       {/* Hero Banner */}
       <HeroBanner />
 
       {/* Category Section */}
-      <section className="max-w-7xl mx-auto text-center mt-20 px-5">
+      <section
+        className="max-w-7xl mx-auto text-center mt-20 px-5"
+        data-aos="fade-up"
+      >
         <h2 className="text-3xl font-bold mb-8">Explore Issue Categories</h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -69,7 +72,10 @@ const Home = () => {
       </section>
 
       {/* Recent Complaints Section */}
-      <section className="max-w-7xl mx-auto text-center mt-20 px-5">
+      <section
+        className="max-w-7xl mx-auto text-center mt-20 px-5"
+        data-aos="fade-down"
+      >
         <h2 className="text-3xl font-bold mb-8">Recent Complaints</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -78,7 +84,7 @@ const Home = () => {
           ))}
         </div>
 
-        <div className="mt-8">
+        <div className="mt-8" data-aos="fade-up">
           <Link to="/issues">
             <button className="btn btn-outline border-[#7A2EFF] text-[#7A2EFF] hover:bg-[#7A2EFF] hover:text-white">
               Show All
@@ -88,7 +94,10 @@ const Home = () => {
       </section>
 
       {/* Community Stats Section */}
-      <section className="max-w-7xl mx-auto mt-24 text-center px-5">
+      <section
+        className="max-w-7xl mx-auto mt-24 text-center px-5"
+        data-aos="fade-up"
+      >
         {/* Animated Title */}
         <h2 className="text-4xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-green-500 via-blue-500 to-purple-600">
           <Typewriter
@@ -148,7 +157,10 @@ const Home = () => {
       </section>
 
       {/* Volunteer / CTA Section */}
-      <section className="relative mt-24 overflow-hidden bg-gradient-to-r from-green-600 via-blue-600 to-cyan-600 text-white py-20 text-center container mx-auto">
+      <section
+        className="relative mt-24 overflow-hidden bg-gradient-to-r from-green-600 via-blue-600 to-cyan-600 text-white py-20 text-center container mx-auto"
+        data-aos="fade-down"
+      >
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/clean-gray-paper.png')]"></div>
 

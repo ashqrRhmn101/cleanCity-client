@@ -23,7 +23,7 @@ const Issues = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
+    <div className="max-w-7xl mx-auto px-4 py-10" data-aos="fade-down">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
         <h2 className="text-3xl font-extrabold">
@@ -138,7 +138,7 @@ const Issues = () => {
             return (
               <div
                 key={_id}
-                className="bg-base-100 dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+                className="bg-base-100 dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300" data-aos="fade-up"
               >
                 {/* Image */}
                 <div className="relative">
@@ -148,7 +148,7 @@ const Issues = () => {
                       "https://via.placeholder.com/600x400?text=No+Image+Available"
                     }
                     alt={title}
-                    className="w-full h-[220px] object-cover"
+                    className="w-full h-[200px] object-cover"
                   />
 
                   {/* Status Badge */}

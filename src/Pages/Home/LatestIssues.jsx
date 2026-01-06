@@ -13,7 +13,7 @@ const LatestIssues = ({ issue }) => {
   const shortTitle = title.length > 70 ? title.slice(0, 70) + "..." : title;
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700">
+    <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700" data-aos="fade-down">
       {/* Image */}
       <div className="w-full h-[200px] overflow-hidden">
         <img
